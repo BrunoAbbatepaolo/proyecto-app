@@ -1,0 +1,21 @@
+/* Centra la tabla en la pantalla */
+.center-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-direction: column;
+}
+
+/* Aplica estilos a la tabla */
+.table-bordered {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+/* Aplica un borde a las celdas */
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid black;
+    padding: 5px;
+}

@@ -96,6 +96,20 @@ return [
             'search_path' => 'public',
             'sslmode' => 'prefer',
         ],
+        'pgsql_mitiv' => [
+            'driver' => 'pgsql',
+            'url' => env('DB_URL'),
+            'host' => '192.168.1.95',
+            'port' => '5432',
+            'database' => 'mitivdb',
+            'username' => 'postgres',
+            'password' => 'Patagonia2021',
+            'charset' => env('DB_CHARSET', 'utf8'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'search_path' => 'public',
+            'sslmode' => 'prefer',
+        ],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
@@ -147,7 +161,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [

@@ -1,7 +1,12 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <div>
+                <a href="/" class="mdi mdi-account bg-gray-300 hover:bg-red-400 text-black font-bold py-4 px-4 rounded text-xl">
+                    Login
+                </a>
+            </div>
+            
         </x-slot>
 
         <x-validation-errors class="mb-4" />
@@ -16,14 +21,14 @@
             @csrf
 
             <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="{{ __('Usuario') }}"/>
             </div>
 
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" placeholder="{{ __('Clave') }}" />
             </div>
+            
 
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">

@@ -12,9 +12,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+
     // Route::get('modem', ModemList::class);
     Route::get('modem', \App\Livewire\ModemList::class)->name('modem');
+    Route::get('expediente', \App\Livewire\Expedientes::class)->name('expediente');
 });

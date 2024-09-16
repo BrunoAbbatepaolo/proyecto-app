@@ -10,10 +10,13 @@ class Expedientes extends Component
 {
     use WithPagination;
     public $modalExp = false;
+    public $modalEdit = false;
 
     public $busquedaExp = '';
 
     public $expedienteEncontrado;
+    
+    public $selectedExpediente;
 
     public $asunto;
 
@@ -38,25 +41,49 @@ class Expedientes extends Component
     public function buscar()
     {
         if (strlen($this->busquedaExp) > 0) {
-            $this->expedienteEncontrado = \App\Models\ExpMitiv::where('numero', 'ILIKE', '%' . $this->busquedaExp . '%')->first();
+            $this->expedienteEncontrado = \App\Models\VistaExpedientes::where('numero', 'ILIKE', '%' . $this->busquedaExp . '%')->first();
+            if(!is_null($this->expedienteEncontrado)) {
             if (strlen($this->expedienteEncontrado['asunto']) > 0) {
                 $this->asunto = $this->expedienteEncontrado['asunto'];
             } else {
-                $this->asunto = \App\Models\TipoAsunto::where('id', $this->expedienteEncontrado['asunto_id'])->first()->nombre;
+                $this->asunto = $this->expedienteEncontrado['oficina'];
             }
-            $this->causante = \App\Models\Causante::where('id', $this->expedienteEncontrado['causante_id'])->first()->nombre;
+            $this->causante = $this->expedienteEncontrado['causante'];
+        }}else{
+            $this->asunto=null;
+            $this->causante=null;
         }
     }
 
-    public function guardar()
+    public function seleccionar()
     {
-
         $this->expedienteForm->num_exp = $this->expedienteEncontrado['numero'];
         $this->expedienteForm->asunto = $this->asunto;
         $this->expedienteForm->folio = $this->expedienteEncontrado['folio'];
         $this->expedienteForm->causante = $this->causante;
+        $this->expedienteForm->fecha_ingreso = now()->format('d-m-Y'); //Establece la fecha actual
+    }
+    public function guardar(){
         $this->validate();
         $resultado = $this->expedienteForm->store();
+        $this->modalExp=false;        
+        $this->expedienteForm->num_exp=null;
+        $this->expedienteForm->asunto=null;
+        $this->expedienteForm->folio=null;
+        $this->expedienteForm->causante=null;
+        $this->expedienteForm->fecha_ingreso=null;
+        $this->expedienteEncontrado=null;
+    }
+    public function editar($id){
+        $this->modalEdit= true;
+        $expediente = \App\Models\Expediente::find($id);
+        $this->expedienteForm->loadExpMitiv($expediente);
+        //$this->selectedExpediente=\App\Models\Expediente::find($id);
+    }
+
+    public function actualizar(){
+        $this->expedienteForm->update();
+        $this->modalEdit=false;
     }
 } // fin de clase
 

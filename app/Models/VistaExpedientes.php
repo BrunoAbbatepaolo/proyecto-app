@@ -5,13 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TipoAsunto extends Model
+class VistaExpedientes extends Model
 {
     use HasFactory;
     protected $connection = "pgsql_mitiv";
-    protected $table = "tipo_asuntos";
+    protected $table = "vista_expedientes";
     protected $fillable = [
-        'nombre',
-        'habilitado',
+        'numero',
+        'fecha',
+        'asunto',
+        'oficina',
+        'folio',
+        'causante',
+        'asunto_id',
     ];
 }

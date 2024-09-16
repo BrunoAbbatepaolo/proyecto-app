@@ -22,6 +22,8 @@ class ExpedienteForm extends Form
     #[Validate('required')]
     public $asunto;
 
+    #[Validate('required')]
+    public $fecha_ingreso;
     #[Validate('nullable')]
     public $ofi_salida;
 
@@ -33,6 +35,7 @@ class ExpedienteForm extends Form
         'folio',
         'causante',
         'asunto',
+        'fecha_ingreso',
         'ofi_salida',
         'fecha_salida',
     ];
@@ -53,6 +56,7 @@ class ExpedienteForm extends Form
             DB::commit();
             return 1;
         } catch (\Exception $exception) {
+            dd($exception);
             DB::rollBack();
             return 0;
         }

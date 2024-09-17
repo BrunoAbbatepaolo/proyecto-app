@@ -85,6 +85,11 @@ class Expedientes extends Component
         $this->expedienteForm->update();
         $this->modalEdit=false;
     }
+
+    public function borrar($id){
+        $expediente = \App\Models\Expediente::find($id);
+        $this->expedienteForm->delete($expediente);
+    }
 } // fin de clase
 
 // Video que explica cómo habilitar las ligaduras

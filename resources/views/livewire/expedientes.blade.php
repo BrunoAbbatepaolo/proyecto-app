@@ -81,8 +81,8 @@
                 <td class="px-4 py-2 border border-gray-300">{{ $expediente->ofi_salida }}</td>
                 <td class="px-4 py-2 border border-gray-300">{{ $expediente->fecha_salida }}</td>
                 <td class="px-4 py-2 border border-gray-300">
-                    <button wire:click="editar({{ $expediente->id }})" class="bg-blue-500 text-black px-4 py-2 rounded">Editar</button>
-                    <button wire:click="borrar({{ $expediente->id }})" class="bg-red-300 text-black px-4 py-2 rounded">Borrar</button>
+                    <button wire:click="editar({{ $expediente->id }})" class="bg-blue-500 text-black px-4 py-2 my-1 rounded">Editar</button>
+                    <button wire:click="borrar({{ $expediente->id }})" class="bg-red-300 text-black px-4 py-2 my-1 rounded">Borrar</button>
                 </td>
             </tr>
             @endforeach

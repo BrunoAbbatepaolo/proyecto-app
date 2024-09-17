@@ -79,6 +79,18 @@ class ExpedienteForm extends Form
         }
     }
 
+    public function delete($expediente)
+    {
+    DB::beginTransaction();
+    try {
+          $expediente->delete();
+            DB::commit();
+            return 1;
+        } catch (\Exception $exception) {
+         DB::rollBack();
+            return 0;
+        }
+    }
     private function hayCambios()
     {
         foreach ($this->campos as $campo) {
@@ -88,4 +100,5 @@ class ExpedienteForm extends Form
         }
         return false;
     }
+    
 }
